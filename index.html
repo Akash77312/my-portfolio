@@ -17,6 +17,14 @@
     <link rel="stylesheet" href="css/skins/color_4.css" class="alternate-style"title="color-4"disabled>
     <link rel="stylesheet" href="css/skins/color_5.css" class="alternate-style"title="color-5"disabled>
     <link rel="stylesheet" href="css/style-switcher.css">
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
+</script>
+    <script type="text/javascript">
+        (function(){
+           emailjs.init("M2zDVYu1mOsu5F4La");
+        })();
+     </script>
 </head>
 <body> 
     <!-- main container -->
@@ -419,32 +427,32 @@
                             <div class="row">
                                 <div class="form-item col-6 padd-15">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Name">
+                                        <input type="text" id="name" class="form-control" placeholder="Name">
                                     </div>
                                 </div>
                                 <div class="form-item col-6 padd-15">
                                     <div class="form-group">
-                                        <input type="email" class="form-control" placeholder="Email">
+                                        <input type="email" id="email"class="form-control" placeholder="Email">
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-item col-12 padd-15">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Subject">
+                                        <input type="text" id="subject" class="form-control" placeholder="Subject">
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-item col-12 padd-15">
                                     <div class="form-group">
-                                        <textarea name="" class="form-control" id="" placeholder="Message"></textarea>
+                                        <textarea name="" id="textarea" class="form-control" id="" placeholder="Message"></textarea>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-item col-12 padd-15">
-                                    <button type="submit" class="btn">Send Message</button>
+                                    <button onclick="sendEmail()" class="btn">Send Message</button>
                                 </div>
                             </div>
                         </div>
@@ -479,6 +487,32 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.16/typed.umd.js" integrity="sha512-+2pW8xXU/rNr7VS+H62aqapfRpqFwnSQh9ap6THjsm41AxgA0MhFRtfrABS+Lx2KHJn82UOrnBKhjZOXpom2LQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="js/Script.js"></script>
     <script src="js/style-switcher.js"></script>
+    <script>
+        function sendEmail(){
+        var params={
+            from_name:document.getElementById("name").value,
+            email:document.getElementById("email").value,
+            subject:document.getElementById("subject").value,
+            textarea:document.getElementById("textarea").value,
+        }
+        const service_id="service_em61fu5";
+    const template_id="template_s6lrb7o";
+
+    emailjs.send(service_id,template_id,params)
+        .then(
+            res=>{
+                document.getElementById("name").value=""
+                document.getElementById("email").value=""
+                document.getElementById("subject").value=""
+                document.getElementById("textarea").value=""
+                console.log(res);
+                alert("Send successfully");
+            }
+        )
+        .catch((err)=>{console.log(err)})
+    }  
+        
+    </script>
 </body>
 
 </html>
