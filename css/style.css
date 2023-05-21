@@ -627,6 +627,14 @@ ul
     width: 100%;
     display: block;
 }
+.portfolio .portfolio-item-inner .portfolio-img a
+{
+    text-align: center;
+    margin: 0 100px;
+    padding: 5px;
+    font-weight: 700;
+    color: var(--text-black-900);
+}
 /* contact used */
 .contact-title
 {
